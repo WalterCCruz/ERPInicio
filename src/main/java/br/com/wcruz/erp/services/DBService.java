@@ -18,9 +18,9 @@ public class DBService {
 
     public void instantiateDatabase() throws ParseException {
 
-        Fornecedor fornecedor1 = new Fornecedor("teste1","teste@teste.com","123456789");
-        Fornecedor fornecedor2 = new Fornecedor("teste2","teste@teste.com","123456789");
-        Fornecedor fornecedor3 = new Fornecedor("teste3","teste@teste.com","123456789");
+        Fornecedor fornecedor1 = new Fornecedor(null,"teste1","teste@teste.com","123456789");
+        Fornecedor fornecedor2 = new Fornecedor(null,"teste2","teste@teste.com","123456789");
+        Fornecedor fornecedor3 = new Fornecedor(null,"teste3","teste@teste.com","123456789");
 
         fornecedorRepository.saveAll(Arrays.asList(fornecedor1,fornecedor2,fornecedor3));
 
