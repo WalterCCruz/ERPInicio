@@ -58,7 +58,7 @@ public class FornecedorResource {
             obj = fornecedorService.create(obj);
             /*Neste trecho estou associando para URL o id criado para o novo objeto e já atribuindo o seu direcionamento*/
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-            LOGGER.info("Objeto criado com sucesso" + obj.getId());
+            LOGGER.info("Objeto criado com sucesso " + obj.getId());
             return ResponseEntity.created(uri).build();
         } catch (Exception e) {
             LOGGER.info("Falha ao criar objeto");
@@ -67,10 +67,11 @@ public class FornecedorResource {
 
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<FornecedorDTO> update(@RequestBody FornecedorDTO objDTO) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<FornecedorDTO> update(@PathVariable Long id, @RequestBody FornecedorDTO objDTO) {
         try {
             Fornecedor obj = fornecedorService.fromDTO(objDTO);
+            obj.setId(id);
             obj = fornecedorService.update(obj);
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
             LOGGER.info("Objeto editado com sucesso" + obj.getId());
@@ -82,6 +83,7 @@ public class FornecedorResource {
 
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         try {
             fornecedorService.delete(id);
